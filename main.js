@@ -4,6 +4,7 @@
 
     const replaceBlackCode = (string) => { // in 1 range string // out some range string 
         let rebuild = string
+        .replace(' ',"' '")
         .replace("t","(!![]+[])[-[]]")
         .replace("r","(!![]+[])[-~[]]")
         .replace("u","([]['']+[])[-[]]")
@@ -21,19 +22,25 @@
         .replace("b","([...{}+{}])[-~[]<<-~[]]")
         .replace("j","([...{}+{}])[-~-~[-~[]]]")
         .replace("c","([...{}+{}])[(-~[]+[]+-~[]>>-~[])]")
-        .replace(' ',' ')
         return rebuild
     }
 
-    const canUseString = ["t", "r", "u", "e", "f", "a", "l", "s", "n", "d", "i", "I", "y", "[", "o", "b", "j", "c", " ", "O", "]", "N"]
+    const canUseString = ["t", "r", "u", "e", "f", "a", "l", "s", "n", "d", "i", "I", "y", "o", "b", "j", "c", "N"]
 
     // Declare Variable
-    const inputs  = stdin.toString().trim().split('');
-  
+    const inputs  = [...stdin+[]]
     // Main Procedure
 
-    // inputs.map( x => replaceBlackCode(x))    
+    for (let input of inputs) {
+        for (let myString of canUseString) {
+            if (inputs == myString){
+                //使える文字なら => 置き換える
+            } else {
+                //使えない文字なら => utf8に変換して、数字を記号化する必要がある
+            }
+        }
+    }
 
     console.log(inputs.map( x => replaceBlackCode(x)).join('+'))
-  console.log(inputs)
+
   })(require('fs').readFileSync('/dev/stdin', 'utf8'));
