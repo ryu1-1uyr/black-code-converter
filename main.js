@@ -31,16 +31,24 @@
     const inputs  = [...stdin+[]]
     // Main Procedure
 
+    let output = [];
+
     for (let input of inputs) {
         for (let myString of canUseString) {
-            if (inputs == myString){
+            console.log(input,myString)
+            if (input == myString){
                 //使える文字なら => 置き換える
+                console.log("置き換える場所")
+                output.push(input)
+                break;
             } else {
                 //使えない文字なら => utf8に変換して、数字を記号化する必要がある
+                console.log('でこーど')
             }
         }
     }
 
-    console.log(inputs.map( x => replaceBlackCode(x)).join('+'))
+    // console.log(inputs.map( x => replaceBlackCode(x)).join('+'))
+    console.log(output)
 
   })(require('fs').readFileSync('/dev/stdin', 'utf8'));
