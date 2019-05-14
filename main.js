@@ -3,7 +3,7 @@
     const range = (len, start) =>
       Array.from(Array(len), (v, i) => i + start)
   
-    const uniq = array => {return [...new Set(array)]} 
+    const uniq = array => [...new Set(array)]
   
     // Declare Variable
     const inputs  = stdin.toString().trim().split('');
