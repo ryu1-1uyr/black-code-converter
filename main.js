@@ -3,13 +3,14 @@
     const range = (len, start) =>
       Array.from(Array(len), (v, i) => i + start)
   
-    const zeroPadding = digit => n => n.padStart(digit, '0')
+    const uniq = array => {return [...new Set(array)]} 
   
     // Declare Variable
     const inputs  = stdin.toString().trim().split('');
   
     // Main Procedure
-
+    //["t", "r", "u", "e", "f", "a", "l", "s", "n", "d", "i", "I", "y", "[", "o", "b", "j", "c", " ", "O", "]", "N"]
+    //使用可能文字列
   
     console.log(inputs)
   
