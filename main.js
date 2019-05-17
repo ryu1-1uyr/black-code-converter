@@ -37,22 +37,35 @@
         let frag = false;
 
         for (let myString of canUseString) {
-            console.log(input,myString)
+            // console.log(input,myString)
             
             if (input == myString) {
                 //使える文字なら => 置き換える
-                console.log("置き換える場所")
+                // console.log("置き換える場所")
                 output.push(input)
                 break;
 
             } else if('_end_' == myString) {
-                // console.log('でこーど')
 
             } else {
+
+                // console.log('でこーど')
                 //使えない文字なら => utf8に変換して、数字を記号化する必要がある
-                console.log("next")
+                const pursedArr = [...myString.charCodeAt().toString(16)+[]]  
+                console.log(input,pursedArr)
+                if (pursedArr.length < 4) {
+                    let returnArr = [...Array(4).fill(0)]
+                    returnArr[2] = pursedArr[0]
+                    returnArr[3] = pursedArr[1]
+
+                    console.log(returnArr)
+                    
+                } else {
+//リスト内に内文字列だった場合に上記の処理を行いたい
+                }
 
             }
+
         }
     }
 
