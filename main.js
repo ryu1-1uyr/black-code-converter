@@ -38,7 +38,21 @@
         return rebuild
     }
 
-    const canUseString = ["t", "r", "u", "e", "f", "a", "l", "s", "n", "d", "i", "I", "y", "o", "b", "j", "c", "N","_end_"]
+    const createReturnUTF = (string) => {
+    // const output =`(!![]+[])[-~[]]+(!![]+[])[__]+(!![]+[])[+[]]+(!![]+[])[-~[-~[]]]+(!![]+[])[-~[]]+([]['']+[])[-~[]]+" "+'\"'+'\\'+([]['']+[])[[]-[]]+'{'+`+string+`+'}'+'\"';`
+    
+    ___="(!![]+[])[-~[]]+(!![]+[])[__]+(!![]+[])[+[]]+(!![]+[])[-~[-~[]]]+(!![]+[])[-~[]]+([]['']+[])[-~[]]+' \"'+'\\\\' +([]['']+[])[[]-[]] +'{' +"+string+"+ '}'+'\"';"
+
+// (!![]-[]+'')+
+// (![]+[])[-[]] +
+// (__+(!![]-[]))+[] +
+// (![]+[])[-~[]]+
+// __*__+
+
+    return ___
+    }
+
+    const canUseString = ["t", "r", "u", "e", "f", "a", "l", "s", "n", "d", "i", "I", "y", "o", "b", "j", "c", "N","0","1","2","3","4","5","6","7","8","9","_end_"]
 
     // Declare Variable
     const inputs  = [...stdin+[]]
@@ -72,15 +86,27 @@
 
                         console.log(returnArr)
                         //ここで形成した配列をさらにreplaceBlackCodeしてまとめたい
-
+                        const flamedArr = []
+                        
                         for (let arrElem of returnArr) {
-                            // console.log(replaceBlackCode(arrElem+[]))
-                            output.push(replaceBlackCode(arrElem+[]))
+                            flamedArr.push(replaceBlackCode(arrElem+[]))
                         }
+
+                        // output.push(createReturnUTF(flamedArr.join('+')))
+                        console.log(createReturnUTF(flamedArr.join('+')))
+                        //fixme [][_][_]("return '\u{0000}'")() の形にしないといけない
                     } else {
-                        //リスト内に内文字列だった場合に上記の処理を行いたい
-                        console.error(pursedArr)
+                        console.error(pursedArr,"🤔")
+                        const flamedElement = ''
+
+                        for (let arrElem of pursedArr) {
+                            // flamedElement += (replaceBlackCode(arrElem+[]))
+                            console.log(pursedArr)
+                        }
+
+                        // console.log(output) 
                     }
+                    
 
             }
 
@@ -88,7 +114,7 @@
     }
 
 
-    console.log(blackConstructor)
+    // console.log(blackConstructor)
     // console.log(inputs.map( x => replaceBlackCode(x)).join('+'))
     console.log(output.join('+'))
 
