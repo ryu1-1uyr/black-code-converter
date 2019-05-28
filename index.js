@@ -1,7 +1,5 @@
 (stdin => {
     const blackConstructor =`__=-~-~[-~[]];_=[...{}+[]][__+__- -~[]]+[...{}+[]][-~[]]+([][""]+[])[-~[]]+(([]==[])+[])[__]+(-~[]/[]+[])[__+__]+(!![]+[])[-~[]]+([][""]+[])[+[]]+[...{}+[]][__+__- -~[]]+(!![]+[])[+[]]+[...{}+[]][-~[]]+(!![]+[])[-~[]];`
-    const range = (len, start) => Array.from(Array(len), (v, i) => i + start)
-    const uniq = array => [...new Set(array)] // in array // out array
 
     const replaceBlackCode = (string) => { // in 1 range string // out some range string 
         const rebuild = string
@@ -84,6 +82,7 @@
 
                     const utf8code = wrapper(createReturnUTF(flamedArr.join('+')))
                     output.push(utf8code)
+
                 } else {
                     const flamedArr = []
                     
@@ -91,8 +90,8 @@
                         flamedArr.push(replaceBlackCode(arrElem+[]))
                     }
 
-                    hogehoge = wrapper(createReturnUTF(flamedArr.join('+')))
-                    output.push(hogehoge)
+                    const utf8code = wrapper(createReturnUTF(flamedArr.join('+')))
+                    output.push(utf8code)
 
                 }
 
