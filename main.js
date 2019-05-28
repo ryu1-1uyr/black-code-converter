@@ -74,7 +74,8 @@
                         //ここで形成した配列をさらにreplaceBlackCodeしてまとめたい
 
                         for (let arrElem of returnArr) {
-                            console.log(replaceBlackCode(arrElem+[]))
+                            // console.log(replaceBlackCode(arrElem+[]))
+                            output.push(replaceBlackCode(arrElem+[]))
                         }
                     } else {
                         //リスト内に内文字列だった場合に上記の処理を行いたい
@@ -87,8 +88,8 @@
     }
 
 
-    // console.log(blackConstructor)
+    console.log(blackConstructor)
     // console.log(inputs.map( x => replaceBlackCode(x)).join('+'))
-    console.log(output)
+    console.log(output.join('+'))
 
   })(require('fs').readFileSync('/dev/stdin', 'utf8'));
