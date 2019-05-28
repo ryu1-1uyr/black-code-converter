@@ -39,18 +39,15 @@
     }
 
     const createReturnUTF = (string) => {
-    // const output =`(!![]+[])[-~[]]+(!![]+[])[__]+(!![]+[])[+[]]+(!![]+[])[-~[-~[]]]+(!![]+[])[-~[]]+([]['']+[])[-~[]]+" "+'\"'+'\\'+([]['']+[])[[]-[]]+'{'+`+string+`+'}'+'\"';`
     
-    ___="(!![]+[])[-~[]]+(!![]+[])[__]+(!![]+[])[+[]]+(!![]+[])[-~[-~[]]]+(!![]+[])[-~[]]+([]['']+[])[-~[]]+' \"'+'\\\\' +([]['']+[])[[]-[]] +'{' +"+string+"+ '}'+'\"';"
-
-// (!![]-[]+'')+
-// (![]+[])[-[]] +
-// (__+(!![]-[]))+[] +
-// (![]+[])[-~[]]+
-// __*__+
-
-    return ___
+        ___="(!![]+[])[-~[]]+(!![]+[])[__]+(!![]+[])[+[]]+(!![]+[])[-~[-~[]]]+(!![]+[])[-~[]]+([]['']+[])[-~[]]+' \"'+'\\\\' +([]['']+[])[[]-[]] +'{' +"+string+"+ '}'+'\"'"
+        return ___
     }
+
+    const wrapper = (string) => {
+        ___="[][_][_]("+string+")()"
+        return ___
+    } 
 
     const canUseString = ["t", "r", "u", "e", "f", "a", "l", "s", "n", "d", "i", "I", "y", "o", "b", "j", "c", "N","0","1","2","3","4","5","6","7","8","9","_end_"]
 
@@ -84,7 +81,7 @@
                         returnArr[2] = pursedArr[0]
                         returnArr[3] = pursedArr[1]
 
-                        console.log(returnArr)
+                        // console.log(returnArr)
                         //ここで形成した配列をさらにreplaceBlackCodeしてまとめたい
                         const flamedArr = []
                         
@@ -92,17 +89,20 @@
                             flamedArr.push(replaceBlackCode(arrElem+[]))
                         }
 
-                        // output.push(createReturnUTF(flamedArr.join('+')))
-                        console.log(createReturnUTF(flamedArr.join('+')))
+                        hogehoge = wrapper(createReturnUTF(flamedArr.join('+')))
+                        output.push(hogehoge)
+                        // console.log(hogehoge)
                         //fixme [][_][_]("return '\u{0000}'")() の形にしないといけない
                     } else {
                         console.error(pursedArr,"🤔")
-                        const flamedElement = ''
-
+                        const flamedArr = []
+                        
                         for (let arrElem of pursedArr) {
-                            // flamedElement += (replaceBlackCode(arrElem+[]))
-                            console.log(pursedArr)
+                            flamedArr.push(replaceBlackCode(arrElem+[]))
                         }
+
+                        hogehoge = wrapper(createReturnUTF(flamedArr.join('+')))
+                        output.push(hogehoge)
 
                         // console.log(output) 
                     }
@@ -114,8 +114,8 @@
     }
 
 
-    // console.log(blackConstructor)
+    console.log(blackConstructor)
     // console.log(inputs.map( x => replaceBlackCode(x)).join('+'))
-    console.log(output.join('+'))
+    console.log(output.join("+"))
 
   })(require('fs').readFileSync('/dev/stdin', 'utf8'));
