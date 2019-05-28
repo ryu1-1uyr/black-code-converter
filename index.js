@@ -59,14 +59,17 @@
       continue;
     }
 
-    //使えない文字なら => utf8に変換して、数字を記号化する
-    const parsedArr = [...(input.charCodeAt(0).toString(16) + [])];
+    // charCode単位でイテレートする
+    for (let i = 0, l = input.length; i < l; ++i) {
+      //使えない文字なら => utf8に変換して、数字を記号化する
+      const parsedArr = [...(input.charCodeAt(i).toString(16) + [])];
 
-    //ここで形成した配列をさらにreplaceBlackCodeしてまとめる
-    const flamedArr = parsedArr.map(replaceBlackCode);
+      //ここで形成した配列をさらにreplaceBlackCodeしてまとめる
+      const flamedArr = parsedArr.map(replaceBlackCode);
 
-    const utf8code = wrapper(createReturnUTF(flamedArr.join("+")));
-    output.push(utf8code);
+      const utf8code = wrapper(createReturnUTF(flamedArr.join("+")));
+      output.push(utf8code);
+    }
   }
 
   console.log(blackConstructor, output.join("+"));
