@@ -65,11 +65,7 @@
       rawArr.length < 4 ? ["0", "0", rawArr[0], rawArr[1]] : rawArr;
 
     //ここで形成した配列をさらにreplaceBlackCodeしてまとめる
-    const flamedArr = [];
-
-    for (const arrElem of parsedArr) {
-      flamedArr.push(replaceBlackCode(arrElem + []));
-    }
+    const flamedArr = parsedArr.map(replaceBlackCode);
 
     const utf8code = wrapper(createReturnUTF(flamedArr.join("+")));
     output.push(utf8code);
