@@ -87,7 +87,7 @@
 
   //main code
 
-  for (let input of inputs) {
+  for (const input of inputs) {
     //使える文字なら => 置き換える
     if (canUseString.includes(input)) {
       output.push(replaceBlackCode(input));
@@ -105,7 +105,7 @@
       //ここで形成した配列をさらにreplaceBlackCodeしてまとめる
       const flamedArr = [];
 
-      for (let arrElem of returnArr) {
+      for (const arrElem of returnArr) {
         flamedArr.push(replaceBlackCode(arrElem + []));
       }
 
@@ -114,7 +114,7 @@
     } else {
       const flamedArr = [];
 
-      for (let arrElem of pursedArr) {
+      for (const arrElem of pursedArr) {
         flamedArr.push(replaceBlackCode(arrElem + []));
       }
 
