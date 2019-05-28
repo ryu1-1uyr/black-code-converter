@@ -60,9 +60,7 @@
     }
 
     //使えない文字なら => utf8に変換して、数字を記号化する
-    const rawArr = [...(input.charCodeAt(0).toString(16) + [])];
-    const parsedArr =
-      rawArr.length < 4 ? ["0", "0", rawArr[0], rawArr[1]] : rawArr;
+    const parsedArr = [...(input.charCodeAt(0).toString(16) + [])];
 
     //ここで形成した配列をさらにreplaceBlackCodeしてまとめる
     const flamedArr = parsedArr.map(replaceBlackCode);
