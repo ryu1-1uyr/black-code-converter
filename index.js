@@ -1,7 +1,9 @@
 (stdin => {
+    //Declare Variable
     const blackConstructor =`__=-~-~[-~[]];_=[...{}+[]][__+__- -~[]]+[...{}+[]][-~[]]+([][""]+[])[-~[]]+(([]==[])+[])[__]+(-~[]/[]+[])[__+__]+(!![]+[])[-~[]]+([][""]+[])[+[]]+[...{}+[]][__+__- -~[]]+(!![]+[])[+[]]+[...{}+[]][-~[]]+(!![]+[])[-~[]];`
+    const canUseString = ["t", "r", "u", "e", "f", "a", "l", "s", "n", "d", "i", "I", "y", "o", "b", "j", "c", "N","0","1","2","3","4","5","6","7","8","9","_end_"]
 
-    const replaceBlackCode = (string) => { // in 1 range string // out some range string 
+    const replaceBlackCode = (string) => { //地獄。いい感じの書き換えを思いつきたいね
         const rebuild = string
         .replace(' ',"' '")
         .replace("t","(!![]+[])[-[]]")
@@ -37,7 +39,6 @@
     }
 
     const createReturnUTF = (string) => {
-    
         ___="(!![]+[])[-~[]]+(!![]+[])[__]+(!![]+[])[+[]]+(!![]+[])[-~[-~[]]]+(!![]+[])[-~[]]+([]['']+[])[-~[]]+' \"'+'\\\\' +([]['']+[])[[]-[]] +'{' +"+string+"+ '}'+'\"'"
         return ___
     }
@@ -46,14 +47,10 @@
         ___="[][_][_]("+string+")()"
         return ___
     } 
-
-    const canUseString = ["t", "r", "u", "e", "f", "a", "l", "s", "n", "d", "i", "I", "y", "o", "b", "j", "c", "N","0","1","2","3","4","5","6","7","8","9","_end_"]
-
-    // Declare Variable
     const inputs  = [...stdin+[]]
-    // Main Procedure
-
     const output = [];
+
+    //main code 
 
     for (let input of inputs) {
 
@@ -65,7 +62,7 @@
                 break;
 
             } else if('_end_' == myString) {
-                //使えない文字なら => utf8に変換して、数字を記号化する必要がある
+                //使えない文字なら => utf8に変換して、数字を記号化する
                 const pursedArr = [...input.charCodeAt().toString(16)+[]]  
 
                 if (pursedArr.length < 4) {
@@ -94,9 +91,7 @@
                     output.push(utf8code)
 
                 }
-
             }
-
         }
     }
 
