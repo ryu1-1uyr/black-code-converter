@@ -59,8 +59,12 @@
                         returnArr[2] = pursedArr[0]
                         returnArr[3] = pursedArr[1]
 
-                        console.log(input,returnArr)
+                        console.log(returnArr)
                         //ここで形成した配列をさらにreplaceBlackCodeしてまとめたい
+
+                        for (let arrElem of returnArr) {
+                            console.log(replaceBlackCode(arrElem+[]))
+                        }
                     } else {
                         //リスト内に内文字列だった場合に上記の処理を行いたい
                         console.error(pursedArr)
