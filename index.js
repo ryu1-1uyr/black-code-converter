@@ -60,32 +60,19 @@
     }
 
     //使えない文字なら => utf8に変換して、数字を記号化する
-    const pursedArr = [...(input.charCodeAt().toString(16) + [])];
+    const rawArr = [...(input.charCodeAt(0).toString(16) + [])];
+    const parsedArr =
+      rawArr.length < 4 ? ["0", "0", rawArr[0], rawArr[1]] : rawArr;
 
-    if (pursedArr.length < 4) {
-      const returnArr = [...Array(4).fill(0)];
-      returnArr[2] = pursedArr[0];
-      returnArr[3] = pursedArr[1];
+    //ここで形成した配列をさらにreplaceBlackCodeしてまとめる
+    const flamedArr = [];
 
-      //ここで形成した配列をさらにreplaceBlackCodeしてまとめる
-      const flamedArr = [];
-
-      for (const arrElem of returnArr) {
-        flamedArr.push(replaceBlackCode(arrElem + []));
-      }
-
-      const utf8code = wrapper(createReturnUTF(flamedArr.join("+")));
-      output.push(utf8code);
-    } else {
-      const flamedArr = [];
-
-      for (const arrElem of pursedArr) {
-        flamedArr.push(replaceBlackCode(arrElem + []));
-      }
-
-      const utf8code = wrapper(createReturnUTF(flamedArr.join("+")));
-      output.push(utf8code);
+    for (const arrElem of parsedArr) {
+      flamedArr.push(replaceBlackCode(arrElem + []));
     }
+
+    const utf8code = wrapper(createReturnUTF(flamedArr.join("+")));
+    output.push(utf8code);
   }
 
   console.log(blackConstructor, output.join("+"));
