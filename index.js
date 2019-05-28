@@ -1,11 +1,10 @@
 (stdin => {
     const blackConstructor =`__=-~-~[-~[]];_=[...{}+[]][__+__- -~[]]+[...{}+[]][-~[]]+([][""]+[])[-~[]]+(([]==[])+[])[__]+(-~[]/[]+[])[__+__]+(!![]+[])[-~[]]+([][""]+[])[+[]]+[...{}+[]][__+__- -~[]]+(!![]+[])[+[]]+[...{}+[]][-~[]]+(!![]+[])[-~[]];`
-
     const range = (len, start) => Array.from(Array(len), (v, i) => i + start)
     const uniq = array => [...new Set(array)] // in array // out array
 
     const replaceBlackCode = (string) => { // in 1 range string // out some range string 
-        let rebuild = string
+        const rebuild = string
         .replace(' ',"' '")
         .replace("t","(!![]+[])[-[]]")
         .replace("r","(!![]+[])[-~[]]")
@@ -56,67 +55,52 @@
     const inputs  = [...stdin+[]]
     // Main Procedure
 
-    let output = [];
-    let frag = false;
+    const output = [];
 
     for (let input of inputs) {
 
         for (let myString of canUseString) {
-            // console.log(input,myString)
             
             if (input == myString) {
                 //使える文字なら => 置き換える
-                // console.log("置き換える場所")
                 output.push(replaceBlackCode(input))
-                frag = false
                 break;
 
             } else if('_end_' == myString) {
-            
-                    // console.log('でこーど')
-                    //使えない文字なら => utf8に変換して、数字を記号化する必要がある
-                    const pursedArr = [...input.charCodeAt().toString(16)+[]]  
+                //使えない文字なら => utf8に変換して、数字を記号化する必要がある
+                const pursedArr = [...input.charCodeAt().toString(16)+[]]  
 
-                    if (pursedArr.length < 4) {
-                        let returnArr = [...Array(4).fill(0)]
-                        returnArr[2] = pursedArr[0]
-                        returnArr[3] = pursedArr[1]
+                if (pursedArr.length < 4) {
+                    const returnArr = [...Array(4).fill(0)]
+                    returnArr[2] = pursedArr[0]
+                    returnArr[3] = pursedArr[1]
 
-                        // console.log(returnArr)
-                        //ここで形成した配列をさらにreplaceBlackCodeしてまとめたい
-                        const flamedArr = []
-                        
-                        for (let arrElem of returnArr) {
-                            flamedArr.push(replaceBlackCode(arrElem+[]))
-                        }
-
-                        hogehoge = wrapper(createReturnUTF(flamedArr.join('+')))
-                        output.push(hogehoge)
-                        // console.log(hogehoge)
-                        //fixme [][_][_]("return '\u{0000}'")() の形にしないといけない
-                    } else {
-                        console.error(pursedArr,"🤔")
-                        const flamedArr = []
-                        
-                        for (let arrElem of pursedArr) {
-                            flamedArr.push(replaceBlackCode(arrElem+[]))
-                        }
-
-                        hogehoge = wrapper(createReturnUTF(flamedArr.join('+')))
-                        output.push(hogehoge)
-
-                        // console.log(output) 
-                    }
+                    //ここで形成した配列をさらにreplaceBlackCodeしてまとめる
+                    const flamedArr = []
                     
+                    for (let arrElem of returnArr) {
+                        flamedArr.push(replaceBlackCode(arrElem+[]))
+                    }
+
+                    const utf8code = wrapper(createReturnUTF(flamedArr.join('+')))
+                    output.push(utf8code)
+                } else {
+                    const flamedArr = []
+                    
+                    for (let arrElem of pursedArr) {
+                        flamedArr.push(replaceBlackCode(arrElem+[]))
+                    }
+
+                    hogehoge = wrapper(createReturnUTF(flamedArr.join('+')))
+                    output.push(hogehoge)
+
+                }
 
             }
 
         }
     }
 
-
-    console.log(blackConstructor)
-    // console.log(inputs.map( x => replaceBlackCode(x)).join('+'))
-    console.log(output.join("+"))
+    console.log(blackConstructor,output.join("+"))
 
   })(require('fs').readFileSync('/dev/stdin', 'utf8'));
