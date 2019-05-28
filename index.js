@@ -30,8 +30,7 @@
     "7",
     "8",
     "9",
-    "\n",
-    "_end_"
+    "\n"
   ];
 
   const replaceBlackCode = string => {
@@ -89,40 +88,38 @@
   //main code
 
   for (let input of inputs) {
-    for (let myString of canUseString) {
-      if (input == myString) {
-        //使える文字なら => 置き換える
-        output.push(replaceBlackCode(input));
-        break;
-      } else if ("_end_" == myString) {
-        //使えない文字なら => utf8に変換して、数字を記号化する
-        const pursedArr = [...(input.charCodeAt().toString(16) + [])];
+    //使える文字なら => 置き換える
+    if (canUseString.includes(input)) {
+      output.push(replaceBlackCode(input));
+      continue;
+    }
 
-        if (pursedArr.length < 4) {
-          const returnArr = [...Array(4).fill(0)];
-          returnArr[2] = pursedArr[0];
-          returnArr[3] = pursedArr[1];
+    //使えない文字なら => utf8に変換して、数字を記号化する
+    const pursedArr = [...(input.charCodeAt().toString(16) + [])];
 
-          //ここで形成した配列をさらにreplaceBlackCodeしてまとめる
-          const flamedArr = [];
+    if (pursedArr.length < 4) {
+      const returnArr = [...Array(4).fill(0)];
+      returnArr[2] = pursedArr[0];
+      returnArr[3] = pursedArr[1];
 
-          for (let arrElem of returnArr) {
-            flamedArr.push(replaceBlackCode(arrElem + []));
-          }
+      //ここで形成した配列をさらにreplaceBlackCodeしてまとめる
+      const flamedArr = [];
 
-          const utf8code = wrapper(createReturnUTF(flamedArr.join("+")));
-          output.push(utf8code);
-        } else {
-          const flamedArr = [];
-
-          for (let arrElem of pursedArr) {
-            flamedArr.push(replaceBlackCode(arrElem + []));
-          }
-
-          const utf8code = wrapper(createReturnUTF(flamedArr.join("+")));
-          output.push(utf8code);
-        }
+      for (let arrElem of returnArr) {
+        flamedArr.push(replaceBlackCode(arrElem + []));
       }
+
+      const utf8code = wrapper(createReturnUTF(flamedArr.join("+")));
+      output.push(utf8code);
+    } else {
+      const flamedArr = [];
+
+      for (let arrElem of pursedArr) {
+        flamedArr.push(replaceBlackCode(arrElem + []));
+      }
+
+      const utf8code = wrapper(createReturnUTF(flamedArr.join("+")));
+      output.push(utf8code);
     }
   }
 
